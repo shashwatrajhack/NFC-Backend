@@ -2,14 +2,14 @@ const express = require("express");
 const connectDB = require("./src/config/db");
 const app = express();
 app.use(express.json());
+const globalError = require("./src/middlewares/globalError");
 
 const authRouter = require("./src/routes/userRoutes");
-
-app.post("/basic", (req, res) => {
-  res.status(200).send("API running");
-});
+const profileRouter = require("./src/routes/profile");
 
 app.use("/", authRouter);
+app.use("/",profileRouter)
+app.use(globalError);
 
 connectDB()
   .then(() => {
@@ -20,5 +20,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.log("db connection not established" + err.message);
+    console.log("DB not connected" + err.message);
   });

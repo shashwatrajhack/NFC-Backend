@@ -29,6 +29,9 @@ const userSchema = mongoose.Schema({
     min: 15,
     max: 70,
   },
+  about:{
+    type:String,
+  }
 });
 
 userSchema.methods.getJWT = function () {
@@ -38,7 +41,8 @@ userSchema.methods.getJWT = function () {
       email: this.email,
     },
     process.env.JWT_SECRET,
-    { expiresIn: "8h" }
+    { expiresIn: "8h" },
+    {httpOnly:true},
   );
 };
 
