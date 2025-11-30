@@ -65,4 +65,8 @@ authRouter.delete("/deleteUser", async (req, res) => {
   }
 });
 
+authRouter.patch("/api/update",async(req,res) => {
+  
+})
+
 module.exports = authRouter;
