@@ -3,7 +3,7 @@ const User = require("../models/user");
 const authRouter = express.Router();
 const bcrypt = require("bcrypt");
 
-authRouter.post("/signup", async (req, res) => {
+authRouter.post("/api/signup", async (req, res) => {
   try {
     const { firstName, lastName, email, password, age } = req.body;
 
@@ -23,7 +23,7 @@ authRouter.post("/signup", async (req, res) => {
   }
 });
 
-authRouter.post("/login", async (req, res) => {
+authRouter.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
@@ -49,7 +49,7 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 
-authRouter.delete("/deleteUser", async (req, res) => {
+authRouter.delete("/api/deleteUser", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email, password, password });
 
@@ -66,7 +66,7 @@ authRouter.delete("/deleteUser", async (req, res) => {
 });
 
 authRouter.patch("/api/update",async(req,res) => {
-  
+
 })
 
 module.exports = authRouter;
